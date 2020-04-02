@@ -9,8 +9,12 @@
         "styled-components",
         "text",
         "shapes",
-        "path"
+        "path",
+        "svg",
+        "animation"
     ],
+    "homepage": "https://github.com/Etesam913/react-swervy-text#readme",
+
     "license": "MPL-2.0",
     "scripts": {
         "build": "webpack"
