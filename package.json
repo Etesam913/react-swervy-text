@@ -1,7 +1,7 @@
 {
     "name": "react-swervy-text",
-    "version": "1.0.1",
-    "description": "A react component that allows you to create cool text",
+    "version": "1.0.2",
+    "description": "A react component that allows you to create text that can follow shapes and curves.",
     "main": "./lib/index.js",
     "keywords": [
         "react",

@@ -133,7 +133,7 @@ Rectangle.defaultProps={
   distance: "100%",
   direction: "normal",
   playState: "running",
-  x: 300,
+  x: 0,
   y: 0,
   s1: 200,
   s2: 200,
