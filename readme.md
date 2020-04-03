@@ -3,7 +3,7 @@
 
 ## :see_no_evil: Preview
 
-<img src="gif/react-swervy-text.gif"></img>
+<img src="gif/react-swervy-text.gif" height="500"></img>
 
 ## 📦 Installation 
 
