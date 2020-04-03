@@ -15,8 +15,7 @@ npm install react-swervy-text
 yarn add react-swervy-text
 ```
 
-## Usage
-
+## :mag: Usage
 
 ```jsx
 import React from "react";
@@ -66,8 +65,6 @@ export default App;
 
 ```
 [![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/react-swervy-text-demo-0qk9s)
-
-
 
 
 ### Props
