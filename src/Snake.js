@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import PropTypes from "prop-types";
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,7 +16,7 @@ function Snake(props) {
   let count = 0;
   let height = 0;
   let heightIncrement = props.heightIncrement;
-  let delay = 0;
+  let delay = props.delay;
   const delayConst = props.delayConst;
 
   function getLetter(letter) {
@@ -67,7 +67,7 @@ function Snake(props) {
   }
 
   return (
-    <Container fontSize={props.fontSize}>
+    <Container fontSize={props.fontSize} initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: props.delay}}>
       {letters.map((letter, index) => (
         <motion.div key={index} initial={{ opacity: 0, color: "#000000" }}
           animate={{ opacity: 1, y: getSnakeHeight(index, letter), color: handleColor(letter) }}
@@ -86,15 +86,16 @@ Snake.propTypes={
   text: PropTypes.string,
   fontSize: PropTypes.string,
   colors: PropTypes.array,
-
-}
+  delay: PropTypes.number
+} 
 
 Snake.defaultProps={
   delayConst: .09,
   heightIncrement: -7,
   lenOfEachIncrement: 4,
   text: "This is cool",
-  fontSize: "4rem"
+  fontSize: "4rem",
+  delay: 0
 }
 
 export default Snake;

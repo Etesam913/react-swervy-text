@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import PropTypes from "prop-types";
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +18,7 @@ function Arc(props) {
   const startingRot = props.startingRot;
   let curRot = startingRot;
   const heightIncrement = props.heightIncrement;
-  let delay = 0;
+  let delay = props.delay;
   const delayConst = props.delayConst;
   const letters = Array.from(props.text);
 
@@ -84,7 +84,7 @@ function Arc(props) {
   }
 
   return (
-    <Container fontSize={props.fontSize}>
+    <Container fontSize={props.fontSize} initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: props.delay}}>
       {letters.map((letter, index) => (
         <motion.div key={index} initial={{opacity: 0, color: "#000000"}}
           animate={{opacity: 1, y:getParabolaHeight(index, letter), rotate: props.rotate ? getParabolaRotation(index) : 0,
@@ -104,7 +104,8 @@ Arc.propTypes = {
   text: PropTypes.string,
   colors: PropTypes.array,
   fontSize: PropTypes.string,
-  rotate: PropTypes.bool
+  rotate: PropTypes.bool,
+  delay: PropTypes.number
 }
 
 Arc.defaultProps ={
@@ -113,7 +114,8 @@ Arc.defaultProps ={
   startingRot: -15,
   text: "This is cool",
   fontSize: "4rem",
-  rotate: true
+  rotate: true,
+  delay: 0
 }
 
 export default Arc;

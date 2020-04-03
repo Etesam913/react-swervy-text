@@ -15,7 +15,7 @@ const Marker = styled(motion.div)`
   /*motion-path: path('M 0 0 H 0 50 V 50 100 H 50 0 V 100 0');*/
   motion-path: path(${props => props.offsetPath});
   offset-path: path(${props => props.offsetPath});
-  animation: ${move} ${props => props.period} ${props => props.loop} ${props => props.timingFunction} ${props =>props.direction} ${props=>props.playState};
+  animation: ${move} ${props => props.period} ${props => props.loop} ${props => props.timingFunction} ${props =>props.direction} ${props=>props.playState}, ${props=>props.delay};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +24,7 @@ const Marker = styled(motion.div)`
 
 function Rectangle(props) {
 
-  let delay = 0;
+  let delay = props.delay;
   const delayConst = props.delayConst;
   let count = 0;
 
@@ -92,7 +92,8 @@ function Rectangle(props) {
   }
 
   return (
-    <Marker direction={props.direction} playState={props.playState} distance={props.distance} fontSize={props.fontSize} offsetPath={getRectanglePath(props.x, props.y, props.s1, props.s2)} 
+    <Marker delay={props.delay + "s"} direction={props.direction} playState={props.playState} distance={props.distance} fontSize={props.fontSize} 
+      offsetPath={getRectanglePath(props.x, props.y, props.s1, props.s2)} initial={{opacity: 0}} animate={{opacity: 1}} transition={{delay: props.delay}}
       period={props.period + 's'} timingFunction={getAnimationType()} loop={props.loop}>
       {letters.map((letter, index) => (
         <motion.span key={index} initial={{ opacity: 0, color: "#000000"}}
@@ -118,10 +119,8 @@ Rectangle.propTypes={
   x: PropTypes.number,
   y: PropTypes.number,
   s1: PropTypes.number,
-  s2: PropTypes.number
-
-
-
+  s2: PropTypes.number,
+  delay: PropTypes.number
 }
 
 Rectangle.defaultProps={
@@ -137,8 +136,8 @@ Rectangle.defaultProps={
   x: 300,
   y: 0,
   s1: 200,
-  s2: 200
-
+  s2: 200,
+  delay: 0
 }
 
 

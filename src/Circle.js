@@ -14,14 +14,14 @@ const Marker = styled(motion.div)`
   /*motion-path: path('M 100, 100m -75, 0a 75,75 0 1,0 150,0a 75,75 0 1,0 -150,0');*/
   motion-path: path(${props => props.test});
   offset-path: path(${props => props.test});
-  animation: ${move} ${props => props.period} ${props => props.loop} ${props => props.timingFunction} ${props =>props.direction} ${props=>props.playState};
+  animation: ${move} ${props => props.period} ${props => props.loop} ${props => props.timingFunction} ${props =>props.direction} ${props=>props.playState} ${props=>props.delay};
   font-size: ${props=>props.fontSize};
   display: inline-block;
 `;
 
 function Circle(props) {
 
-  let delay = 0;
+  let delay = props.delay;
   const delayConst = props.delayConst;
   let count = 0;
 
@@ -88,7 +88,7 @@ function Circle(props) {
 
   return (
     <Marker fontSize={props.fontSize} direction ={props.direction} distance={props.distance} playState={props.playState}
-      initial={{ opacity: 0 }} period={props.period + "s"} animate={{ opacity: 1 }}
+      initial={{ opacity: 0 }} period={props.period + "s"} animate={{ opacity: 1 }} transition={{delay: props.delay}}
       test={getCirclePath(props.x, props.y, props.r)} loop={props.loop} timingFunction={getAnimationType()}>
       {letters.map((letter, index) => (
         <motion.span key={index} initial={{ opacity: 0, color: "#000000" }}
@@ -113,7 +113,8 @@ Circle.propTypes = {
   colors: PropTypes.array,
   distance: PropTypes.string,
   direction: PropTypes.string,
-  playState: PropTypes.string
+  playState: PropTypes.string,
+  delay: PropTypes.number
 }
 
 Circle.defaultProps = {
@@ -128,7 +129,8 @@ Circle.defaultProps = {
   fontSize: "4rem",
   distance: "100%",
   direction: "normal",
-  playState: "running"
+  playState: "running",
+  delay: 0
 }
 
 export default Circle;
